@@ -1,0 +1,57 @@
+Only one process, do sequential compute:
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 MPI
+Dynamic state: 1
+Run Time: 0.259013 seconds
+Problem Size: 1000 * 1000, 100
+Process Number: 1
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 MPI
+Dynamic state: 1
+Run Time: 0.266857 seconds
+Problem Size: 1000 * 1000, 100
+Process Number: 2
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 MPI
+Dynamic state: 1
+Run Time: 0.093526 seconds
+Problem Size: 1000 * 1000, 100
+Process Number: 4
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 MPI
+Dynamic state: 1
+Run Time: 0.043700 seconds
+Problem Size: 1000 * 1000, 100
+Process Number: 8
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 MPI
+Dynamic state: 1
+Run Time: 0.023932 seconds
+Problem Size: 1000 * 1000, 100
+Process Number: 16
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 MPI
+Dynamic state: 1
+Run Time: 0.015178 seconds
+Problem Size: 1000 * 1000, 100
+Process Number: 24
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 MPI
+Dynamic state: 1
+Run Time: 0.010016 seconds
+Problem Size: 1000 * 1000, 100
+Process Number: 32
+

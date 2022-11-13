@@ -1,0 +1,49 @@
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 Pthread
+Run Time: 0.287949 seconds
+Problem Size: 1000 * 1000, 100
+Thread Number: 1
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 Pthread
+Run Time: 0.153780 seconds
+Problem Size: 1000 * 1000, 100
+Thread Number: 2
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 Pthread
+Run Time: 0.090844 seconds
+Problem Size: 1000 * 1000, 100
+Thread Number: 4
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 Pthread
+Run Time: 0.050511 seconds
+Problem Size: 1000 * 1000, 100
+Thread Number: 8
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 Pthread
+Run Time: 0.029439 seconds
+Problem Size: 1000 * 1000, 100
+Thread Number: 16
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 Pthread
+Run Time: 0.024119 seconds
+Problem Size: 1000 * 1000, 100
+Thread Number: 24
+
+Student ID: 118010246
+Name: Qin Lan
+Assignment 2 Pthread
+Run Time: 0.023911 seconds
+Problem Size: 1000 * 1000, 100
+Thread Number: 32
+
