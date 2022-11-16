@@ -1,0 +1,84 @@
+./checkpoints/cuda_200_20221116093401/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:200; Number of iterations: 100; block_size32
+Total time: 0.000710; Average time: 0.000007
+./checkpoints/cuda_200_20221116093402/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:200; Number of iterations: 100; block_size64
+Total time: 0.000692; Average time: 0.000007
+./checkpoints/cuda_200_20221116093403/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:200; Number of iterations: 100; block_size128
+Total time: 0.000711; Average time: 0.000007
+./checkpoints/cuda_200_20221116093405/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:200; Number of iterations: 100; block_size256
+Total time: 0.000726; Average time: 0.000007
+./checkpoints/cuda_500_20221116093406/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:500; Number of iterations: 100; block_size32
+Total time: 0.000707; Average time: 0.000007
+./checkpoints/cuda_500_20221116093407/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:500; Number of iterations: 100; block_size64
+Total time: 0.000704; Average time: 0.000007
+./checkpoints/cuda_500_20221116093408/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:500; Number of iterations: 100; block_size128
+Total time: 0.000708; Average time: 0.000007
+./checkpoints/cuda_500_20221116093410/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:500; Number of iterations: 100; block_size256
+Total time: 0.000685; Average time: 0.000007
+./checkpoints/cuda_1000_20221116093411/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:1000; Number of iterations: 100; block_size32
+Total time: 0.000711; Average time: 0.000007
+./checkpoints/cuda_1000_20221116093413/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:1000; Number of iterations: 100; block_size64
+Total time: 0.000697; Average time: 0.000007
+./checkpoints/cuda_1000_20221116093414/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:1000; Number of iterations: 100; block_size128
+Total time: 0.000699; Average time: 0.000007
+./checkpoints/cuda_1000_20221116093416/
+directory creation success
+Student ID: 118010246
+Name: Qin Lan
+Assignment 3: N Body Simulation CUDA Implementation
+Number of body:1000; Number of iterations: 100; block_size256
+Total time: 0.000694; Average time: 0.000007

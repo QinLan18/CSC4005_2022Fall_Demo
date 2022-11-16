@@ -1,0 +1,108 @@
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:200; Number of iterations: 100
+; Number of threads: 1
+Total time: 0.614970; Average time: 0.006150
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:200; Number of iterations: 100
+; Number of threads: 2
+Total time: 0.391533; Average time: 0.003915
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:200; Number of iterations: 100
+; Number of threads: 4
+Total time: 0.220712; Average time: 0.002207
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:200; Number of iterations: 100
+; Number of threads: 8
+Total time: 0.137505; Average time: 0.001375
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:200; Number of iterations: 100
+; Number of threads: 16
+Total time: 1.197500; Average time: 0.011975
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:200; Number of iterations: 100
+; Number of threads: 32
+Total time: 0.540943; Average time: 0.005409
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:500; Number of iterations: 100
+; Number of threads: 1
+Total time: 3.723648; Average time: 0.037236
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:500; Number of iterations: 100
+; Number of threads: 2
+Total time: 3.916159; Average time: 0.039162
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:500; Number of iterations: 100
+; Number of threads: 4
+Total time: 2.584592; Average time: 0.025846
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:500; Number of iterations: 100
+; Number of threads: 8
+Total time: 0.716346; Average time: 0.007163
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:500; Number of iterations: 100
+; Number of threads: 16
+Total time: 1.769948; Average time: 0.017699
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:500; Number of iterations: 100
+; Number of threads: 32
+Total time: 1.308649; Average time: 0.013086
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:1000; Number of iterations: 100
+; Number of threads: 1
+Total time: 14.948495; Average time: 0.149485
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:1000; Number of iterations: 100
+; Number of threads: 2
+Total time: 9.609206; Average time: 0.096092
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:1000; Number of iterations: 100
+; Number of threads: 4
+Total time: 5.559506; Average time: 0.055595
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:1000; Number of iterations: 100
+; Number of threads: 8
+Total time: 2.525458; Average time: 0.025255
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:1000; Number of iterations: 100
+; Number of threads: 16
+Total time: 5.084594; Average time: 0.050846
+Student ID: 118010246
+Name: QinLan
+Assignment 3: N Body Simulation OpenMP Implementation
+Number of body:1000; Number of iterations: 100
+; Number of threads: 32
+Total time: 2.892405; Average time: 0.028924

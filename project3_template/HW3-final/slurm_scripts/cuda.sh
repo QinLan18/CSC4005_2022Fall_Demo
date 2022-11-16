@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#SBATCH --job-name CSC3150CUDADemo  ## Job name
+#SBATCH --gres=gpu:1                ## Number of GPUs required for job execution.
+#SBATCH --output cuda.out         ## filename of the output
+#SBATCH --partition=Project           ## the partitions to run in (Debug or Project)
+#SBATCH --ntasks=1                  ## number of tasks (analyses) to run
+#SBATCH --gpus-per-task=1           ## number of gpus per task
+#SBATCH --time=0-00:02:00           ## time for analysis (day-hour:min:sec)
+
+## Compile the cuda script using the nvcc compiler
+## You can compile your codes out of the script and simply srun the executable file.
+cd /nfsmnt/118010246/HW3
+## Run the script
+./cuda 200 100 32
+./cuda 200 100 64
+./cuda 200 100 128
+./cuda 200 100 256
+
+
+./cuda 500 100 32
+./cuda 500 100 64
+./cuda 500 100 128
+./cuda 500 100 256
+
+./cuda 1000 100 32
+./cuda 1000 100 64
+./cuda 1000 100 128
+./cuda 1000 100 256
+
