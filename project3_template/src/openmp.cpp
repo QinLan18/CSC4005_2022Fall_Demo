@@ -116,13 +116,18 @@ void master() {
             update_position(x, y, vx, vy, i);
         }
 
+<<<<<<< HEAD
        
 
+=======
+>>>>>>> ec13d78b3723489de14cf9c8e9d2a9ffa8793bee
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> time_span = t2 - t1;
         total_time += time_span;
          l.save_frame(x, y);
         printf("Iteration %d, elapsed time: %.3f\n", i, time_span);
+
+        l.save_frame(x, y);
 
         #ifdef GUI
         glClear(GL_COLOR_BUFFER_BIT);
@@ -144,11 +149,11 @@ void master() {
         #endif
     }
 
-    delete m;
-    delete x;
-    delete y;
-    delete vx;
-    delete vy;
+    delete[] m;
+    delete[] x;
+    delete[] y;
+    delete[] vx;
+    delete[] vy;
     
 }
 

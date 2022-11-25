@@ -110,17 +110,17 @@ void master() {
     double *device_vx;
     double *device_vy;
 
-    cudaMalloc(&device_m, n_body);
-    cudaMalloc(&device_x, n_body);
-    cudaMalloc(&device_y, n_body);
-    cudaMalloc(&device_vx, n_body);
-    cudaMalloc(&device_vy, n_body);
+    cudaMalloc(&device_m, n_body * sizeof(double));
+    cudaMalloc(&device_x, n_body * sizeof(double));
+    cudaMalloc(&device_y, n_body * sizeof(double));
+    cudaMalloc(&device_vx, n_body * sizeof(double));
+    cudaMalloc(&device_vy, n_body * sizeof(double));
 
-    cudaMemcpy(device_m, m, n_body, cudaMemcpyHostToDevice);
-    cudaMemcpy(device_x, x, n_body, cudaMemcpyHostToDevice);
-    cudaMemcpy(device_y, y, n_body, cudaMemcpyHostToDevice);
-    cudaMemcpy(device_vx, vx, n_body, cudaMemcpyHostToDevice);
-    cudaMemcpy(device_vy, vy, n_body, cudaMemcpyHostToDevice);
+    cudaMemcpy(device_m, m, n_body * sizeof(double), cudaMemcpyHostToDevice);
+    cudaMemcpy(device_x, x, n_body * sizeof(double), cudaMemcpyHostToDevice);
+    cudaMemcpy(device_y, y, n_body * sizeof(double), cudaMemcpyHostToDevice);
+    cudaMemcpy(device_vx, vx, n_body * sizeof(double), cudaMemcpyHostToDevice);
+    cudaMemcpy(device_vy, vy, n_body * sizeof(double), cudaMemcpyHostToDevice);
 
     int n_block = n_body / block_size + 1;
      
@@ -130,17 +130,28 @@ void master() {
         update_velocity<<<n_block, block_size>>>(device_m, device_x, device_y, device_vx, device_vy, n_body);
         update_position<<<n_block, block_size>>>(device_x, device_y, device_vx, device_vy, n_body);
 
+<<<<<<< HEAD
         cudaMemcpy(x, device_x, n_body*sizeof(double), cudaMemcpyDeviceToHost);
         cudaMemcpy(y, device_y, n_body*sizeof(double), cudaMemcpyDeviceToHost);
 
         
+=======
+        cudaMemcpy(x, device_x, n_body * sizeof(double), cudaMemcpyDeviceToHost);
+        cudaMemcpy(y, device_y, n_body * sizeof(double), cudaMemcpyDeviceToHost);
+>>>>>>> ec13d78b3723489de14cf9c8e9d2a9ffa8793bee
 
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> time_span = t2 - t1;
         total_time += time_span;
         
         printf("Iteration %d, elapsed time: %.3f\n", i, time_span);
+<<<<<<< HEAD
         l.save_frame(x, y);
+=======
+
+        l.save_frame(x, y);
+
+>>>>>>> ec13d78b3723489de14cf9c8e9d2a9ffa8793bee
         #ifdef GUI
         glClear(GL_COLOR_BUFFER_BIT);
         glColor3f(1.0f, 0.0f, 0.0f);
@@ -168,17 +179,11 @@ void master() {
     cudaFree(device_vx);
     cudaFree(device_vy);
 
-    cudaFree(device_m);
-    cudaFree(device_x);
-    cudaFree(device_y);
-    cudaFree(device_vx);
-    cudaFree(device_vy);
-
-    delete m;
-    delete x;
-    delete y;
-    delete vx;
-    delete vy;
+    delete[] m;
+    delete[] x;
+    delete[] y;
+    delete[] vx;
+    delete[] vy;
     
 }
 
