@@ -141,7 +141,6 @@ void master(int rank, int world_size) {
             }
         }
         
-<<<<<<< HEAD
         //do computing
         for(int j = local_size*rank; j < local_size*(rank+1);j++){
             update_velocity(j,total_m,total_x,total_y,total_vx,total_vy,n_body);
@@ -153,9 +152,6 @@ void master(int rank, int world_size) {
         MPI_Barrier(MPI_COMM_WORLD);
 
           
-=======
-        // TODO End
->>>>>>> ec13d78b3723489de14cf9c8e9d2a9ffa8793bee
 
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> time_span = t2 - t1;

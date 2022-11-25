@@ -130,28 +130,17 @@ void master() {
         update_velocity<<<n_block, block_size>>>(device_m, device_x, device_y, device_vx, device_vy, n_body);
         update_position<<<n_block, block_size>>>(device_x, device_y, device_vx, device_vy, n_body);
 
-<<<<<<< HEAD
         cudaMemcpy(x, device_x, n_body*sizeof(double), cudaMemcpyDeviceToHost);
         cudaMemcpy(y, device_y, n_body*sizeof(double), cudaMemcpyDeviceToHost);
 
         
-=======
-        cudaMemcpy(x, device_x, n_body * sizeof(double), cudaMemcpyDeviceToHost);
-        cudaMemcpy(y, device_y, n_body * sizeof(double), cudaMemcpyDeviceToHost);
->>>>>>> ec13d78b3723489de14cf9c8e9d2a9ffa8793bee
 
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> time_span = t2 - t1;
         total_time += time_span;
         
         printf("Iteration %d, elapsed time: %.3f\n", i, time_span);
-<<<<<<< HEAD
         l.save_frame(x, y);
-=======
-
-        l.save_frame(x, y);
-
->>>>>>> ec13d78b3723489de14cf9c8e9d2a9ffa8793bee
         #ifdef GUI
         glClear(GL_COLOR_BUFFER_BIT);
         glColor3f(1.0f, 0.0f, 0.0f);

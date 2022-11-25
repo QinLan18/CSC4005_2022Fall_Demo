@@ -116,11 +116,8 @@ void master() {
             update_position(x, y, vx, vy, i);
         }
 
-<<<<<<< HEAD
        
 
-=======
->>>>>>> ec13d78b3723489de14cf9c8e9d2a9ffa8793bee
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> time_span = t2 - t1;
         total_time += time_span;
