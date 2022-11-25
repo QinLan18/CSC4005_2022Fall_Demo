@@ -74,12 +74,6 @@ void maintain_wall(float *data, int begin, int end) {
 }
 
 
-bool check_continue(float *data, float *new_data){
-    // TODO: determine if we should stop (because the temperature distribution will finally converge)
-    return true;
-}
-
-
 #ifdef GUI
 void data2pixels(float *data, GLubyte* pixels, int begin, int end){
     // convert rawdata (large, size^2) to pixels (small, resolution^2) for faster rendering speed
@@ -133,9 +127,12 @@ void slave(){
         
         // TODO: after computation, send border row to neighbours
 
+        #ifdef GUI
         // TODO: conver raw temperature to pixels (much smaller than raw data)
 
         // TODO: send pixels to master (you can use MPI_Byte to transfer anything to master, then you won't need to declare MPI Type :-) )
+
+        #endif
 
     }
 
@@ -162,16 +159,17 @@ void master() {
     pixels = new GLubyte[resolution * resolution * 3];
     #endif
 
-    bool cont = true;
     int count = 1;
     double total_time = 0;
 
-    while (cont) {
+    // TODO: Send initial distribution to each slave process
+
+    while (true) {
         std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 
-        // MPI Routine
+        // TODO: Computation of my part
 
-        // MPI Routine End
+        // TODO: Send border row to neighbours
 
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
         double this_time = std::chrono::duration<double>(t2 - t1).count();
@@ -181,8 +179,10 @@ void master() {
 
         #ifdef GUI
         if (count % 2 == 1) {
+            // TODO: Gather pixels of slave processes
             data2pixels(data_even, pixels);
         } else {
+            // TODO: Gather pixels of slave processes
             data2pixels(data_odd, pixels);
         }
         plot(pixels);
@@ -226,7 +226,7 @@ int main(int argc, char *argv[]) {
 	if (my_rank == 0){
 		printf("Student ID: 119010001\n"); // replace it with your student id
 		printf("Name: Your Name\n"); // replace it with your name
-		printf("Assignment 3: Heat Distribution Simulation MPI Implementation\n");
+		printf("Assignment 4: Heat Distribution Simulation MPI Implementation\n");
 	}
 
 	MPI_Finalize();
