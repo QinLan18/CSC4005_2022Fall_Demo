@@ -58,8 +58,9 @@ void generate_fire_area(bool *fire_area){
 
 void update(float *data, float *new_data) {
     // update the temperature of each point, and store the result in `new_data` to avoid data racing
-    for (int i = 1; i < size - 1; i++){
-        for (int j = 1; j < size - 1; j++){
+    for (int i = 0; i < size; i++){
+        for (int j = 0; j < size; j++){
+            if ((i == 0) || (i == size)) continue;
             int idx = i * size + j;
             float up = data[idx - size];
             float down = data[idx + size];
@@ -83,6 +84,27 @@ void maintain_fire(float *data, bool* fire_area) {
 
 void maintain_wall(float *data) {
     // TODO: maintain the temperature of the wall
+    int data_length = size * size;
+    for (int i = 0; i < size; i++){
+        data[i] = wall_temp;
+        data[data_length - i] = wall_temp;
+        data[i * size] = wall_temp;
+        data[i * size + 1] = wall_temp;
+    }
+}
+
+
+bool check_continue(float *data, float *new_data){
+    // TODO: determine if we should stop (because the temperature distribution will finally converge)
+    bool check = true;
+    for(int i = 0; i < size;i++){
+        for(int j = 0; j < size; j++){
+            if ((i == 0) || (i == size)) continue;
+            int idx = i * size + j;
+            if(new_data[idx]-data[idx]<=threshold) check = false;
+        }
+    }
+    return check;
 }
 
 
@@ -137,20 +159,23 @@ void master(){
     generate_fire_area(fire_area);
     initialize(data_odd);
 
+    bool cont = true;
     int count = 1;
     double total_time = 0;
 
-    while (true) {
+    while (cont) {
         std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 
         if (count % 2 == 1) {
             update(data_odd, data_even);
             maintain_fire(data_even, fire_area);
             maintain_wall(data_even);
+            cont = check_continue(data_odd, data_even);
         } else {
             update(data_even, data_odd);
             maintain_fire(data_odd, fire_area);
             maintain_wall(data_odd);
+            cont = check_continue(data_odd, data_even);
         }
         
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
@@ -197,8 +222,8 @@ int main(int argc, char* argv[]) {
 
     master();
 
-    printf("Student ID: 119010001\n"); // replace it with your student id
-    printf("Name: Your Name\n"); // replace it with your name
+    printf("Student ID: 118010246\n"); // replace it with your student id
+    printf("Name: Lan Qin\n"); // replace it with your name
     printf("Assignment 4: Heat Distribution Sequential Implementation\n");
 
     return 0;
