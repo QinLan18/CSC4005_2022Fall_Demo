@@ -16,7 +16,7 @@
 
 
 int size; // problem size
-
+int n_iteration = 10000;
 
 void initialize(float *data) {
     // intialize the temperature distribution
@@ -163,19 +163,19 @@ void master(){
     int count = 1;
     double total_time = 0;
 
-    while (cont) {
+    while (count<=n_iteration) {
         std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 
         if (count % 2 == 1) {
             update(data_odd, data_even);
             maintain_fire(data_even, fire_area);
             maintain_wall(data_even);
-            cont = check_continue(data_odd, data_even);
+            // cont = check_continue(data_odd, data_even);
         } else {
             update(data_even, data_odd);
             maintain_fire(data_odd, fire_area);
             maintain_wall(data_odd);
-            cont = check_continue(data_odd, data_even);
+            // cont = check_continue(data_odd, data_even);
         }
         
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
