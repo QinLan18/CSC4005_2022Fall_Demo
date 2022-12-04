@@ -215,7 +215,7 @@ int main(int argc, char *argv[]) {
         glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
         glutInitWindowPosition(0, 0);
         glutInitWindowSize(window_size, window_size);
-        glutCreateWindow("Heat Distribution Simulation Sequential Implementation");
+        glutCreateWindow("Heat Distribution Simulation MPI Implementation");
         gluOrtho2D(0, resolution, 0, resolution);
         #endif
         master();
@@ -224,8 +224,8 @@ int main(int argc, char *argv[]) {
     }
 
 	if (my_rank == 0){
-		printf("Student ID: 119010001\n"); // replace it with your student id
-		printf("Name: Your Name\n"); // replace it with your name
+		printf("Student ID: 118010246\n"); 
+		printf("Name: Lan Qin\n");
 		printf("Assignment 4: Heat Distribution Simulation MPI Implementation\n");
 	}
 
