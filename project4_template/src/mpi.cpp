@@ -18,6 +18,8 @@ int size; // problem size
 
 int my_rank;
 int world_size;
+MPI_Status status;
+int n_iteration = 10;
 
 
 void initialize(float *data) {
@@ -60,17 +62,40 @@ void generate_fire_area(bool *fire_area){
 
 void update(float *data, float *new_data, int begin, int end) {
     // TODO: update the temperature of each point, and store the result in `new_data` to avoid data racing
+    for(int i = begin; i < end; i++){
+        for(int j = 0; j < size; j ++){
+            if(i == begin || i == end) continue;
+            int idx = i * size + j;
+            float up = data[idx - size];
+            float down = data[idx + size];
+            float left = data[idx - 1];
+            float right = data[idx + 1];
+            float new_val = (up + down + left + right) / 4;
+            new_data[idx] = new_val;
+        }
+    }
     
 }
 
 
 void maintain_fire(float *data, bool* fire_area, int begin, int end) {
     // TODO: maintain the temperature of fire
-}
+    int len = (end - begin)*size;
+    for (int i = begin*size; i < end * size; i++){
+        if (fire_area[i]) data[i] = fire_temp;
+    }
+}\
 
 
 void maintain_wall(float *data, int begin, int end) {
     // TODO: maintain the temperature of the wall
+    int data_length = ( end - begin )* size;
+    for (int i = 0; i < size; i++){
+        if (begin==0) data[i] = wall_temp;
+        if(end==size) data[data_length - i] = wall_temp;
+        data[i * size] = wall_temp;
+        data[i * size + 1] = wall_temp;
+    }
 }
 
 
@@ -111,36 +136,67 @@ void slave(){
     // TODO: MPI routine (one possible solution, you can use another partition method)
     int my_begin_row_id = size * my_rank / (world_size);
     int my_end_row_id = size * (my_rank + 1) / world_size;
+    int local_size = my_end_row_id-my_begin_row_id;
 
     // TODO: Initialize a storage for temperature distribution of this area
-    float* local_data;
+    float* local_data = new float[local_size*size];
+    bool* fire_area = new bool[size * size];
+    // float* local_data_odd;
+    // float* local_data_even;
+    // local_data_odd = new float[local_size*size];
+    // local_data_even = new float[local_size*size];
+
     // TODO: Receive initial temperature distribution of this area from master
+    MPI_Recv(local_data,local_size*size*sizeof(float), MPI_FLOAT, 0, 0, MPI_COMM_WORLD, &status);
+    printf("slave %d receive initial temp.", my_rank);
+    MPI_Recv(fire_area, size*size*sizeof(float), MPI_FLOAT, 0, 0, MPI_COMM_WORLD, &status);
 
     // TODO: Initialize a storage for local pixels (pls refer to sequential version for initialization of GLubyte)
     #ifdef GUI
-    GLubyte* local_pixcels;
+    GLubyte* local_pixels = new GLubyte[resolution * resolution * 3 / world_size];
     #endif
 
+    /*
     bool cont = true;
-    while (cont) {
+    int count = 1;
+    while (count <= n_iteration) {
         // TODO: computation part
+        update(local_data,local_data,my_begin_row_id,my_end_row_id);
+        maintain_fire(local_data,fire_area, my_begin_row_id, my_end_row_id);
+        maintain_wall(local_data, my_begin_row_id,my_end_row_id);
         
         // TODO: after computation, send border row to neighbours
+        //end row to neighbor
+        // if(my_rank < world_size - 1) {
+        //     MPI_Send(local_data+(local_size-1)*size, size*sizeof(float), MPI_FLOAT, my_rank+1,0,MPI_COMM_WORLD);
+        // }
+        // //begin row to neighbor
+        // if(my_rank > 0){
+        //     MPI_Send(local_data, size*sizeof(float), MPI_FLOAT, my_rank-1,0,MPI_COMM_WORLD);
+        // }
+        //send result to master
+        MPI_Send(local_data, 1, MPI_FLOAT, 0, 0, MPI_COMM_WORLD);
+        count ++;
 
         #ifdef GUI
         // TODO: conver raw temperature to pixels (much smaller than raw data)
-
+        data2pixels(local_data, local_pixels);
         // TODO: send pixels to master (you can use MPI_Byte to transfer anything to master, then you won't need to declare MPI Type :-) )
-
+        MPI_Send(local_pixels, resolution*resolution*3/world_size*sizeof(MPI_BYTE),MPI_BYTE, 0, 0, MPI_COMM_WORLD, &status);
         #endif
 
     }
+    */
 
     #ifdef GUI
-    data2pixels(local_data, local_pixcels);
+    data2pixels(local_data, local_pixels);
     #endif
 
     // TODO: Remember to delete[] local_data and local_pixcels.
+    delete[] local_data;
+    #ifdef GUI
+    delete[] local_pixcels;
+    #endif
 }
 
 
@@ -162,13 +218,38 @@ void master() {
     int count = 1;
     double total_time = 0;
 
-    // TODO: Send initial distribution to each slave process
+    printf("initialized.\n");
 
-    while (true) {
+    // TODO: Send initial distribution to each slave process
+    
+   
+    for(int i = 0; i < world_size; i++){
+        int my_begin_row_id = size * i / (world_size);
+        int my_end_row_id = size * (i + 1) / world_size;
+        int local_size = my_end_row_id-my_begin_row_id;
+        printf("distrubited.\n");
+        MPI_Send(data_odd+my_begin_row_id*size, 1 ,MPI_FLOAT, i, 0, MPI_COMM_WORLD);
+        // MPI_Send(fire_area,1,MPI_FLOAT, i, 0, MPI_COMM_WORLD);
+        // MPI_Sendrecv(data_odd,local_size*size*(sizeof(float)), MPI_FLOAT, i, 0, )
+        printf("%d send row (%d) - (%d) to %d \n", my_rank, my_begin_row_id, my_end_row_id,i);
+    }
+    
+    
+    /*
+
+    while (count <= n_iteration) {
         std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 
         // TODO: Computation of my part
-
+        if(count % 2 == 1){
+            MPI_Gather(data_odd, 1, MPI_FLOAT, data_even, 1, MPI_FLOAT, 0, MPI_COMM_WORLD);
+            printf("gather data in iteration %d\n", count);
+        }
+        else{
+            MPI_Gather(data_even, 1, MPI_FLOAT, data_odd, 1, MPI_FLOAT, 0, MPI_COMM_WORLD);
+            printf("gather data in iteration %d\n", count);
+        }
+        
         // TODO: Send border row to neighbours
 
         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
@@ -180,6 +261,7 @@ void master() {
         #ifdef GUI
         if (count % 2 == 1) {
             // TODO: Gather pixels of slave processes
+            MPI_Recv();
             data2pixels(data_even, pixels);
         } else {
             // TODO: Gather pixels of slave processes
@@ -188,6 +270,7 @@ void master() {
         plot(pixels);
         #endif
     }
+    */
 
     delete[] data_odd;
     delete[] data_even;
